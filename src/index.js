@@ -1,17 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Home from './pages/Home';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import DisplayCategory from './components/DisplayCategory';
+import Shop from './pages/Shop';
+import Details from './pages/Details';
+import Cart from './pages/Cart';
+import CheckOut from './pages/CheckOut';
+import Contact from './pages/Contact';
+import OrderPlaced from './components/OrderPlaced';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ <Provider store={store}>
+ <BrowserRouter>
+ <Routes>
+  <Route path='/' element={<Home/>} />
+  <Route path='/display' element={<DisplayCategory/>}></Route>
+  <Route path='/shop' element={<Shop/>}></Route>
+  <Route path='/details' element={<Details/>}></Route>
+  <Route path='/cart' element={<Cart/>}></Route>
+  <Route path='/checkout' element={<CheckOut/>}></Route>
+  <Route path='/contact' element={<Contact/>}></Route>
+  <Route path='/order' element={<OrderPlaced/>}></Route>
+ </Routes>
+ </BrowserRouter>
+//  </Provider>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
+);
